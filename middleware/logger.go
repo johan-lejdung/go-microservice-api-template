@@ -7,7 +7,6 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/VBSverige/reminder-service/utils"
 	"github.com/urfave/negroni"
 
 	log "github.com/sirupsen/logrus"
@@ -36,7 +35,7 @@ func (l Logger) ServeHTTP(rw http.ResponseWriter, r *http.Request, next http.Han
 	next(rw, r)
 
 	res := rw.(negroni.ResponseWriter)
-	if !utils.StringInSlice(r.URL.Path, l.ExludePaths) {
+	if !StringInSlice(r.URL.Path, l.ExludePaths) {
 		// Log the body
 		b, err := ioutil.ReadAll(bodyReader)
 		if err == nil && len(b) > 0 {

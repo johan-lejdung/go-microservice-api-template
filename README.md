@@ -3,7 +3,7 @@
 [![CircleCI](https://circleci.com/gh/johan-lejdung/go-microservice-api-template.svg?style=svg)](https://circleci.com/gh/johan-lejdung/go-microservice-api-template)
 [![codecov](https://codecov.io/gh/johan-lejdung/go-microservice-api-template/branch/master/graph/badge.svg)](https://codecov.io/gh/johan-lejdung/go-microservice-api-template)
 
-A template for a go microservice with a API.
+A template for a go microservice with a REST-API.
 
 For a service configured with PubSub look at https://github.com/johan-lejdung/go-microservice-pubsub-template
 
