@@ -64,12 +64,12 @@ go get github.com/vektra/mockery/.../
 
 Generate files
 ```
-go generate ./services/....
+go generate ./....
 ```
 
 Run tests
 ```
-go test ./services/...
+go test ./...
 ```
 
 # Code Guide
@@ -92,6 +92,8 @@ Handler(negroni.New(
 The database will automatically apply migrations if the variable in `.env` called `ENV` is either `dev` or `test`.
 
 I am using https://github.com/mattes/migrate for database migrations.
+
+Run a local database in docker with `docker-compose up`.
 
 ## Bootstrap
 I am using https://github.com/facebookgo/inject for dependency injection.

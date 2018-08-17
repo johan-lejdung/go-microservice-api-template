@@ -1,0 +1,14 @@
+version: '2'
+services:
+  mysql:
+    image: mysql:5.7
+    ports:
+        - "3306:3306"
+    # For strict mode
+    #command: mysqld --sql_mode="ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"
+    command: mysqld --sql_mode="ONLY_FULL_GROUP_BY,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"
+    environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_USER: apidatabase
+        MYSQL_PASSWORD: apipass
+        MYSQL_DATABASE: test
