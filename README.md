@@ -28,7 +28,7 @@ Replace all occourances of `go-microservice-api-template` with whatever you are 
 
 ## Env Config
 
-Open up `.env` and change the settings nessicary.
+Open up `.env` and change the settings necessary.
 
 ## CircleCI and CodeCov
 
