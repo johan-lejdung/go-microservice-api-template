@@ -78,7 +78,7 @@ go test ./...
 # Code Guide
 
 ## Api
-The api is found in the `api folder` and has the service it uses injected to it's structure.
+The api is found in the `goservice` folder and has the service it uses injected to it's structure.
 
 To have multiple endpoints, simply add endpoints in `InitAPIRoute()`.
 

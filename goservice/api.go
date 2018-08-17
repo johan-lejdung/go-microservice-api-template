@@ -1,10 +1,9 @@
-package api
+package goservice
 
 import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/johan-lejdung/go-microservice-api-template/goservice"
 	"github.com/urfave/negroni"
 
 	log "github.com/sirupsen/logrus"
@@ -12,8 +11,8 @@ import (
 
 // GoAPI contains the configuration
 type GoAPI struct {
-	Router    *mux.Router              `inject:""`
-	GoService goservice.ServiceActions `inject:""`
+	Router    *mux.Router    `inject:""`
+	GoService ServiceActions `inject:""`
 }
 
 // InitAPIRoute initializes the route

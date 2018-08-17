@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/johan-lejdung/go-microservice-api-template/utils"
+	"github.com/VBSverige/reminder-service/utils"
 	"github.com/urfave/negroni"
 
 	log "github.com/sirupsen/logrus"
@@ -24,7 +24,7 @@ func (l Logger) ServeHTTP(rw http.ResponseWriter, r *http.Request, next http.Han
 
 	// Read the body and save a reader for later
 	var bodyReader io.ReadCloser
-	if !utils.StringInSlice(r.URL.Path, l.ExludePaths) {
+	if !StringInSlice(r.URL.Path, l.ExludePaths) {
 		buf, _ := ioutil.ReadAll(r.Body)
 		bodyReader = ioutil.NopCloser(bytes.NewBuffer(buf))
 		defer bodyReader.Close()

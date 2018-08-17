@@ -8,7 +8,6 @@ import (
 
 	log "github.com/sirupsen/logrus"
 
-	"github.com/johan-lejdung/go-microservice-api-template/api"
 	"github.com/johan-lejdung/go-microservice-api-template/db"
 	"github.com/johan-lejdung/go-microservice-api-template/goservice"
 	"github.com/johan-lejdung/go-microservice-api-template/liveness"
@@ -19,7 +18,7 @@ import (
 // App contains the context of the application
 type App struct {
 	Router      *mux.Router          `inject:""`
-	GoAPI       *api.GoAPI           `inject:""`
+	GoAPI       *goservice.GoAPI     `inject:""`
 	LivenessAPI liveness.LivenessAPI `inject:""`
 }
 
@@ -77,7 +76,7 @@ func bootstrapApp() App {
 
 	err = g.Provide(
 		&inject.Object{Value: &app},
-		&inject.Object{Value: &api.GoAPI{}},
+		&inject.Object{Value: &goservice.GoAPI{}},
 		&inject.Object{Value: database},
 		&inject.Object{Value: &liveness.API{}},
 		&inject.Object{Value: &goservice.Service{}},

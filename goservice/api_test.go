@@ -1,4 +1,4 @@
-package api_test
+package goservice_test
 
 import (
 	"errors"
@@ -6,11 +6,9 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/johan-lejdung/go-microservice-api-template/api/mocks"
-
-	"github.com/johan-lejdung/go-microservice-api-template/api"
-
 	"github.com/gorilla/mux"
+	"github.com/johan-lejdung/go-microservice-api-template/goservice"
+	"github.com/johan-lejdung/go-microservice-api-template/goservice/mocks"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -20,7 +18,7 @@ func TestFail(t *testing.T) {
 	goActions := &mocks.ServiceActions{}
 	goActions.On("TestFunction").Return(errors.New("Error"))
 
-	api := api.GoAPI{
+	api := goservice.GoAPI{
 		Router:    mux.NewRouter().StrictSlash(true),
 		GoService: goActions,
 	}
@@ -38,7 +36,7 @@ func TestSuccess(t *testing.T) {
 	goActions := &mocks.ServiceActions{}
 	goActions.On("TestFunction").Return(nil)
 
-	api := api.GoAPI{
+	api := goservice.GoAPI{
 		Router:    mux.NewRouter().StrictSlash(true),
 		GoService: goActions,
 	}
