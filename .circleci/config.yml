@@ -19,6 +19,6 @@ jobs:
       # specify any bash command here prefixed with `run: `
       - run: go get -u github.com/stretchr/testify
       - run: go get github.com/vektra/mockery/.../
-      - run: go generate ./services/...
+      - run: go generate ./...
       - run: ./test.sh
       - run: bash <(curl -s https://codecov.io/bash)

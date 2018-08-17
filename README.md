@@ -101,3 +101,6 @@ type TestStruct struct {
     Variable pkg.InterfaceType `inject:""`
 }
 ```
+
+## Vendor folder
+I have the vendor folder checked into the repo, for reproducibility.
