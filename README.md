@@ -2,6 +2,8 @@
 
 A template for a go microservice with a API.
 
+For a service configured with PubSub look at https://github.com/johan-lejdung/go-microservice-pubsub-template
+
 Features:
 - Dependency injection
 - Database connection
@@ -101,3 +103,6 @@ type TestStruct struct {
     Variable pkg.InterfaceType `inject:""`
 }
 ```
+
+## Vendor folder
+I have the vendor folder checked into the repo, for reproducibility.

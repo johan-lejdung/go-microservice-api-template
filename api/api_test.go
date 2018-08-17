@@ -27,7 +27,7 @@ func TestFail(t *testing.T) {
 	api.InitAPIRoute()
 
 	w := httptest.NewRecorder()
-	r := httptest.NewRequest("POST", "/cron/generate-birthday-reminders/", nil)
+	r := httptest.NewRequest("GET", "/endpoint/", nil)
 
 	api.Router.ServeHTTP(w, r)
 
@@ -45,7 +45,7 @@ func TestSuccess(t *testing.T) {
 	api.InitAPIRoute()
 
 	w := httptest.NewRecorder()
-	r := httptest.NewRequest("POST", "/cron/generate-birthday-reminders/", nil)
+	r := httptest.NewRequest("GET", "/endpoint/", nil)
 
 	api.Router.ServeHTTP(w, r)
 
