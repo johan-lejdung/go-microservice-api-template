@@ -22,16 +22,3 @@ func TestHealth(t *testing.T) {
 
 	assert.Equal(t, http.StatusOK, w.Code)
 }
-
-func TestHealthBaseUrl(t *testing.T) {
-	api := &liveness.API{
-		Router: mux.NewRouter().StrictSlash(true),
-	}
-	api.InitHealthRouter()
-
-	w := httptest.NewRecorder()
-	r := httptest.NewRequest("GET", "/", nil)
-	api.Router.ServeHTTP(w, r)
-
-	assert.Equal(t, http.StatusOK, w.Code)
-}

@@ -10,12 +10,6 @@ func (a *API) InitHealthRouter() {
 		Path("/health/").
 		Name("health").
 		Handler(http.HandlerFunc(a.health()))
-
-	a.Router.
-		Methods("GET").
-		Path("/").
-		Name("health").
-		Handler(http.HandlerFunc(a.health()))
 }
 
 func (a *API) health() func(w http.ResponseWriter, r *http.Request) {
