@@ -14,6 +14,9 @@ type Service struct {
 	Db *sql.DB `inject:""`
 }
 
+// compile-time interface implementation check
+var _ Services = &Service{}
+
 // TestFunction will always return nil, replace with real function
 func (s *Service) TestFunction() error {
 	return nil
