@@ -11,8 +11,8 @@ import (
 
 // GoAPI contains the configuration
 type GoAPI struct {
-	Router    *mux.Router    `inject:""`
-	GoService ServiceActions `inject:""`
+	Router    *mux.Router `inject:""`
+	GoService Services    `inject:""`
 }
 
 // InitAPIRoute initializes the route

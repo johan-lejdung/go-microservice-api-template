@@ -4,8 +4,8 @@ import (
 	"database/sql"
 )
 
-// ServiceActions contains methods for the Actions
-type ServiceActions interface {
+// Services contains methods for the Actions
+type Services interface {
 	TestFunction() error
 }
 

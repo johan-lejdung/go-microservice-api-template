@@ -12,10 +12,10 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-//go:generate mockery -dir=../goservice -name=ServiceActions
+//go:generate mockery -dir=../goservice -name=Services
 
 func TestFail(t *testing.T) {
-	goActions := &mocks.ServiceActions{}
+	goActions := &mocks.Services{}
 	goActions.On("TestFunction").Return(errors.New("Error"))
 
 	api := goservice.GoAPI{
@@ -33,7 +33,7 @@ func TestFail(t *testing.T) {
 }
 
 func TestSuccess(t *testing.T) {
-	goActions := &mocks.ServiceActions{}
+	goActions := &mocks.Services{}
 	goActions.On("TestFunction").Return(nil)
 
 	api := goservice.GoAPI{

@@ -20,5 +20,5 @@ jobs:
       - run: go get -u github.com/stretchr/testify
       - run: go get github.com/vektra/mockery/.../
       - run: go generate ./...
-      - run: ./test.sh
+      - run: go test -v -race -coverprofile=profile.out -covermode=atomic ./...
       - run: bash <(curl -s https://codecov.io/bash)
