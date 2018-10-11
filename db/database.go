@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+
 	// Need to import this package to access database driver
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/mattes/migrate"
@@ -20,7 +21,7 @@ func CreateDatabase() (*sql.DB, error) {
 	password := os.Getenv("DB_PASSWORD")
 	dbName := os.Getenv("DB_NAME")
 
-	db, err := sql.Open("mysql", user+":"+password+"@tcp("+serverName+":3306)/"+dbName+"?&charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=true&multiStatements=true")
+	db, err := sql.Open("mysql", user+":"+password+"@tcp("+serverName+")/"+dbName+"?&charset=utf8mb4&collation=utf8mb4_unicode_ci&parseTime=true&multiStatements=true")
 	if err != nil {
 		return nil, err
 	}
