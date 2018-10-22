@@ -91,6 +91,34 @@ Handler(negroni.New(
 ))
 ```
 
+Currently there is one POST endpoint and one GET endpoint.
+
+**POST endpoint**
+```
+POST localhost:8080/endpoint/
+```
+It expects a body on this form
+```
+{
+    value: "someValue"
+}
+```
+
+Try it out with
+```
+CURL -v -d '{"value":"this is a value"}' localhost:8080/endpoint/
+```
+
+**GET endpoint**
+```
+GET localhost:8080/endpoint/{id}
+```
+
+Try it out with
+```
+CURL -v localhost:8080/endpoint/1
+```
+
 ## Database
 The database will automatically apply migrations if the variable in `.env` called `ENV` is either `dev` or `test`.
 
