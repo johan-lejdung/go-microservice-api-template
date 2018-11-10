@@ -1,6 +1,8 @@
 package goservice_test
 
 import (
+	"bytes"
+	"encoding/json"
 	"errors"
 	"net/http"
 	"net/http/httptest"
@@ -14,9 +16,9 @@ import (
 
 //go:generate mockery -dir=../goservice -name=Services
 
-func TestFail(t *testing.T) {
+func TestGET_WrongID(t *testing.T) {
 	goActions := &mocks.Services{}
-	goActions.On("TestFunction").Return(errors.New("Error"))
+	goActions.On("GetFunction", 1).Return("", errors.New("Error"))
 
 	api := goservice.GoAPI{
 		Router:    mux.NewRouter().StrictSlash(true),
@@ -25,16 +27,16 @@ func TestFail(t *testing.T) {
 	api.InitAPIRoute()
 
 	w := httptest.NewRecorder()
-	r := httptest.NewRequest("GET", "/endpoint/", nil)
+	r := httptest.NewRequest("GET", "/endpoint/asd", nil)
 
 	api.Router.ServeHTTP(w, r)
 
 	assert.Equal(t, http.StatusBadRequest, w.Code)
 }
 
-func TestSuccess(t *testing.T) {
+func TestGET_Fail(t *testing.T) {
 	goActions := &mocks.Services{}
-	goActions.On("TestFunction").Return(nil)
+	goActions.On("GetFunction", 1).Return("", errors.New("Error"))
 
 	api := goservice.GoAPI{
 		Router:    mux.NewRouter().StrictSlash(true),
@@ -43,7 +45,73 @@ func TestSuccess(t *testing.T) {
 	api.InitAPIRoute()
 
 	w := httptest.NewRecorder()
-	r := httptest.NewRequest("GET", "/endpoint/", nil)
+	r := httptest.NewRequest("GET", "/endpoint/1", nil)
+
+	api.Router.ServeHTTP(w, r)
+
+	assert.Equal(t, http.StatusBadRequest, w.Code)
+}
+
+func TestGET_Success(t *testing.T) {
+	goActions := &mocks.Services{}
+	goActions.On("GetFunction", 1).Return("value", nil)
+
+	api := goservice.GoAPI{
+		Router:    mux.NewRouter().StrictSlash(true),
+		GoService: goActions,
+	}
+	api.InitAPIRoute()
+
+	w := httptest.NewRecorder()
+	r := httptest.NewRequest("GET", "/endpoint/1", nil)
+
+	api.Router.ServeHTTP(w, r)
+
+	assert.Equal(t, http.StatusOK, w.Code)
+}
+
+func TestPOST_Fail(t *testing.T) {
+	payload := goservice.TestPayload{
+		Value: "This is a value",
+	}
+	body, err := json.Marshal(payload)
+	assert.NoError(t, err)
+
+	goActions := &mocks.Services{}
+	goActions.On("PostFunction", payload).Return(0, errors.New("Error"))
+
+	api := goservice.GoAPI{
+		Router:    mux.NewRouter().StrictSlash(true),
+		GoService: goActions,
+	}
+	api.InitAPIRoute()
+
+	w := httptest.NewRecorder()
+	r := httptest.NewRequest("POST", "/endpoint/", bytes.NewBuffer(body))
+
+	api.Router.ServeHTTP(w, r)
+
+	assert.Equal(t, http.StatusBadRequest, w.Code)
+}
+
+func TestPOST_Success(t *testing.T) {
+	payload := goservice.TestPayload{
+		Value: "This is a value",
+	}
+	body, err := json.Marshal(payload)
+	assert.NoError(t, err)
+
+	goActions := &mocks.Services{}
+	goActions.On("PostFunction", payload).Return(1, nil)
+
+	api := goservice.GoAPI{
+		Router:    mux.NewRouter().StrictSlash(true),
+		GoService: goActions,
+	}
+	api.InitAPIRoute()
+
+	w := httptest.NewRecorder()
+	r := httptest.NewRequest("POST", "/endpoint/", bytes.NewBuffer(body))
 
 	api.Router.ServeHTTP(w, r)
 
